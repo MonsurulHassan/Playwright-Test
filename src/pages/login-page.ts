@@ -16,6 +16,7 @@ export class LoginPage extends BasePage {
 
   async goTo(): Promise<void> {
     await this.page.goto(await this.getPageUrl());
+    await this.page.locator("[data-test-element-id='login-page']").waitFor({ state: "visible" });
   }
 
   async fillEmail(email: string): Promise<void> {

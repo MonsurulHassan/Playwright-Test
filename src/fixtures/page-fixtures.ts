@@ -1,4 +1,3 @@
-import { LoginPage } from "../pages/login-page";
 import { test as base } from "@playwright/test";
 import * as dotenv from "dotenv";
 import * as path from "path";

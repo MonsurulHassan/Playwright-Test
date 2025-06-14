@@ -9,4 +9,8 @@ export class WorkspaceTermsOfServicePage extends WorkspaceInfoPage {
     async getPageUrl(): Promise<string> {
         return "/a/workspace-admin/basic-settings/global#anchor-settings-global-workspace-tos";
     }  
+
+    async goTo(): Promise<void> {
+        await this.page.goto(await this.getPageUrl());
+    }
 }

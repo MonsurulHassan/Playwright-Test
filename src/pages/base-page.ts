@@ -9,12 +9,9 @@ export abstract class BasePage {
 
     abstract getPageId(): Promise<string>;
 
-    abstract getPageUrl(): Promise<string>;;
+    abstract getPageUrl(): Promise<string>;
 
-    async goTo(): Promise<void> {
-        this.acceptWorkspaceTermsOfService();
-        await this.page.goto(await this.getPageUrl());
-    }
+    abstract goTo(): Promise<void>; 
 
     async getCurrentPageId(): Promise<string> {
         const pageId = await this.page.locator("body").getAttribute("data-test-element-id");
@@ -24,31 +21,15 @@ export abstract class BasePage {
     async isAtPage(): Promise<boolean> {
         const currentPageId = await this.getCurrentPageId();
         const expectedPageId = this.getPageId();
-
         return currentPageId === await expectedPageId;
     }
 
     protected async acceptCookies(): Promise<void> {
-        if (await this.page.locator(".cookie-consent-modal").isVisible()) {
-            await this.page.locator('button[data-action-url$="accept"]').click();
+        const cookieConsentModal = this.page.locator(".cookie-consent-modal");
+        if (await cookieConsentModal.isVisible()) {
+            await this.page.getByRole("button", { name: "Accept" }).click();
+            await cookieConsentModal.waitFor({ state: "hidden" });
+            await this.page.waitForLoadState('networkidle');
         }
-    }
-
-    async acceptWorkspaceTermsOfService(): Promise<void> {
-        if (await this.page.locator(".membership-tos-accept-content").isVisible()) {
-            await this.page.locator(".check-mark").waitFor({ state: "visible" });
-            await this.page.locator(".check-mark").check();
-            await this.page.getByRole("button", { name: "Confirm" }).waitFor({ state: "visible" });
-            await this.page.getByRole("button", { name: "Confirm" }).click();
-        }
-
-        // const tosSection = this.page.locator("section:has(#anchor-settings-global-workspace-tos)");
-        // const tosSwitch = tosSection.locator("#tos-enabled");
-        // if (await tosSwitch.isVisible()) {
-        //     await tosSwitch.click();
-        //     await this.page.getByRole("button", { name: "Save Changes" }).click();
-        // } else {
-        //     console.warn("Terms of Service switch not found or not visible.");
-        // }
     }
 }

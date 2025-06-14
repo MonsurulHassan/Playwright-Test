@@ -18,6 +18,10 @@ export class WorkspaceInfoPage extends BasePage {
     return "/a/workspace-admin/basic-settings/global";
   }
 
+  async goTo(): Promise<void> {
+    await this.page.goto(await this.getPageUrl());
+  }
+
   async getWorkspaceTermsOfServiceSection(): Promise<WorkspaceTermsOfServiceSection> {
     return new WorkspaceTermsOfServiceSection(
         this.page,
