@@ -7,7 +7,7 @@ export class WorkspaceHomePage extends BasePage {
   }
 
   async getPageId(): Promise<string> {
-    return "workspace-home";
+    return "landing-page";
   }
 
   async getPageUrl(): Promise<string> {
@@ -16,6 +16,6 @@ export class WorkspaceHomePage extends BasePage {
 
   async goTo(): Promise<void> {
     await this.page.goto(await this.getPageUrl());
-    await this.page.locator("[data-test-element-id='workspace-home']").waitFor({ state: "visible" });
+    await this.page.getByTestId("landing-page").waitFor({ state: "visible" });
   }
 }

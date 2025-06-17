@@ -19,7 +19,7 @@ async function authenticateAndSaveStorage(
   const loginPage = new LoginPage(page);
   await loginPage.goTo();
   await loginPage.login(email, password);
-  await page.locator("[data-test-element-id='workspace-home']").waitFor({ state: "visible" });
+  await page.getByTestId("landing-page").waitFor({ state: "visible" });
   await page.context().storageState({ path: storageFilePath });
 }
 

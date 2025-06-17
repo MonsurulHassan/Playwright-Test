@@ -36,7 +36,7 @@ export default defineConfig({
     testIdAttribute: "data-test-element-id",
     screenshot: "only-on-failure",
     video: "retain-on-failure",
-    headless: false,
+    headless: true,
   },
 
   /* Configure projects for major browsers */

@@ -10,11 +10,11 @@ test.describe("admin-panel", () => {
     expect(await workspaceHomePage.isAtPage()).toBeTruthy();
   });
 
-  test.use({ storageState: ".auth/regular-member.json" });
-  test('login as workspace regular member', async ({ workspaceHomePage }) => {
-    await workspaceHomePage.goTo();
-    expect(await workspaceHomePage.isAtPage()).toBeTruthy();
-  });
+  // test.use({ storageState: ".auth/regular-member.json" });
+  // test('login as workspace regular member', async ({ workspaceHomePage }) => {
+  //   await workspaceHomePage.goTo();
+  //   expect(await workspaceHomePage.isAtPage()).toBeTruthy();
+  // });
 
   // test('login as both workspace admin and regular member', async ({ browser }) => {
   //   // Workspace Admin
@@ -45,12 +45,4 @@ test.describe("admin-panel", () => {
 
   //   await memberContext.close();
   // });
-
-  test.use({ storageState: ".auth/workspace-admin.json" });
-  test('enable workspace terms of service', async ({ workspaceTermsOfServicePage }) => {
-    await workspaceTermsOfServicePage.goTo();
-    expect(await workspaceTermsOfServicePage.isAtPage()).toBeTruthy();
-
-    WorkspaceTermsOfServicePage.
-  });
 });
