@@ -1,9 +1,13 @@
 import { Page } from "@playwright/test";
-import { WorkspaceInfoPage } from "./workspace-info-page";
+import { BasePage } from "./base-page";
 
-export class WorkspaceTermsOfServicePage extends WorkspaceInfoPage {
+export class WorkspaceTermsOfServicePage extends BasePage {
     constructor(page: Page) {
         super(page);
+    }
+
+    async getPageId(): Promise<string> {
+        return "workspace-info";
     }
 
     async getPageUrl(): Promise<string> {
@@ -12,5 +16,6 @@ export class WorkspaceTermsOfServicePage extends WorkspaceInfoPage {
 
     async goTo(): Promise<void> {
         await this.page.goto(await this.getPageUrl());
+        await this.page.locator("[data-test-element-id='workspace-info']").waitFor({ state: "visible" });
     }
 }

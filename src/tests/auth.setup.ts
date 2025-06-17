@@ -32,11 +32,11 @@ setup("authenticate workspace admin", async ({ page }) => {
   );
 });
 
-setup("authenticate workspace regular member", async ({ page }) => {
-  await authenticateAndSaveStorage(
-    page,
-    process.env["REPORTING_REGULAR_MEMBER_EMAIL"]!,
-    process.env["REPORTING_REGULAR_MEMBER_PASSWORD"]!,
-    ".auth/regular-member.json"
-  );
-});
+// setup("authenticate workspace regular member", async ({ page }) => {
+//   await authenticateAndSaveStorage(
+//     page,
+//     process.env["REPORTING_REGULAR_MEMBER_EMAIL"]!,
+//     process.env["REPORTING_REGULAR_MEMBER_PASSWORD"]!,
+//     ".auth/regular-member.json"
+//   );
+// });
